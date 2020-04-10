@@ -20,7 +20,7 @@ describe('test', () => {
         {
             userLanguages:  ['es', 'ch-MO'],
             availableLanguages: ['fr', 'en-UK', 'ch-TW'],
-            expectedLanguages: 'defaultLanguage',
+            expectedLanguages: 'ch-TW',
             defaultLanguage: 'defaultLanguage'
         },
         {
@@ -30,9 +30,15 @@ describe('test', () => {
             defaultLanguage: 'defaultLanguage'
         },
         {
+            userLanguages: ['ja', 'en-US'],
+            availableLanguages: ['ja-JP', 'en'],
+            expectedLanguages: 'ja-JP',
+            defaultLanguage: 'defaultLanguage'
+        },
+        {
             userLanguages: ['fr-FR', 'fr-BE'],
             availableLanguages: ['fr-KA'],
-            expectedLanguages: 'defaultLanguage',
+            expectedLanguages: 'fr-KA',
             defaultLanguage: 'defaultLanguage'
         },
         {
