@@ -1,0 +1,48 @@
+{
+  "name": "iso-language-picker",
+  "version": "1.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefdelec/iso-language-picker"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "prepublish": "npm run build"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.3.0",
+    "ts-jest": "^25.3.1",
+    "typescript": "^3.8.3"
+  },
+  "private": false,
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testEnvironment": "jest-environment-node",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "dependencies": {
+    "@types/jest": "^25.2.1",
+    "lodash": "^4.17.15"
+  }
+}
