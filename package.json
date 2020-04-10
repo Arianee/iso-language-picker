@@ -10,7 +10,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "postpublish": "npm version minor && git push"
   },
   "engines": {
     "node": "10"
