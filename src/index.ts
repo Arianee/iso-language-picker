@@ -1,28 +1,51 @@
-import {intersectionWith} from 'lodash';
+
+export const pickLanguageAccordingToUserLanguagesWithMacrosFallback=(
+    macros:string[],
+    userLanguages: string[],
+    availableLanguages: string[],
+    defaultLanguage: string)=>{
+
+    const splittedMacro=macros
+        .map(macro=>({
+            macro:macro.split('-')[0],
+            from:macro
+        }))
+        .filter(d=>!availableLanguages.includes(d.macro))
+    
+
+    const pickLanguage= pickLanguageAccordingToUserLanguages(userLanguages,[...availableLanguages,...splittedMacro.map(d=>d.macro)],defaultLanguage);
+    
+    if(splittedMacro.map(d=>d.macro).includes(pickLanguage)){
+       const macro= splittedMacro?.find(d=>d.macro===pickLanguage);
+       return macro?.from;
+    }else{
+        return pickLanguage
+    }
+}
 
 export const pickLanguageAccordingToUserLanguages = (userLanguages: string[],
                                                      availableLanguages: string[],
-                                                     defaultLanguage?: string
-): string | undefined => {
+                                                     defaultLanguage: string
+): string => {
+    const sorted = availableLanguages.sort().reverse();
+    let choosedLanguage;
+    let i=0;
 
+    do{
+        const userLanguage=userLanguages[i];
+        
+        const indexPerfectMatching = sorted.indexOf(userLanguage);
+        const indexPartialMatching = sorted
+            .indexOf(userLanguage.split('-')[0]);
 
-    const findExactMatch = intersectionWith(userLanguages, availableLanguages);
-    if (findExactMatch.length > 0) {
-        return findExactMatch[0];
-    } else {
-        // If no exact match, it compare first two characters of availaible languages and user languages
+            if(indexPerfectMatching>-1){
+                choosedLanguage= sorted[indexPerfectMatching];
+            } else if(indexPartialMatching>-1){
+                choosedLanguage= sorted[indexPartialMatching];
+            }
+            i++;
+    }while(!choosedLanguage && i<userLanguages.length)
 
-        const userSplittedLanguage = userLanguages.map(lang => lang.split('-')[0]);
-        const availaibleSplittedLanguage = availableLanguages.map(lang => lang.split('-')[0]);
-
-        const findApproximateMatchMatch = intersectionWith(userSplittedLanguage, availaibleSplittedLanguage);
-
-        if (findApproximateMatchMatch.length > 0) {
-            const firstApproximate = findApproximateMatchMatch[0];
-            const indexOfApproximate = availaibleSplittedLanguage.findIndex(d => d === firstApproximate);
-            return availableLanguages[indexOfApproximate];
-        }
-    }
-
-    return defaultLanguage;
-};
+   
+    return choosedLanguage || defaultLanguage;
+}
