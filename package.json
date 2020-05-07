@@ -1,11 +1,11 @@
 {
-  "name": "iso-language-picker",
-  "version": "1.2.0",
-  "description": "",
+  "name": "@arianee/iso-language-picker",
+  "version": "0.0.1",
+  "description": "This library aims to helps developer trying to understand what language should be displayed to user",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stefdelec/iso-language-picker"
+    "url": "https://github.com/Arianee/iso-language-picker"
   },
   "scripts": {
     "test": "jest",
