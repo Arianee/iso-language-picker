@@ -1,6 +1,6 @@
 {
   "name": "@arianee/iso-language-picker",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "This library aims to helps developer trying to understand what language should be displayed to user",
   "main": "lib/index.js",
   "repository": {
