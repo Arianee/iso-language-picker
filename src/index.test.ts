@@ -1,7 +1,7 @@
 import {pickLanguageAccordingToUserLanguages,pickLanguageAccordingToUserLanguagesWithMacrosFallback} from "./index";
 
 describe("macro languages",()=>{
-    const testSet=[ 
+    const testSet=[
         {
             macros:['fr-FR', 'ja-JP', 'en-US', 'ko-KR', 'de-DE'],
             userLanguages: ['fr-BE'],
@@ -64,8 +64,15 @@ describe("macro languages",()=>{
             availableLanguages: ['en-US','Ka-BE','es'],
             expectedLanguages: 'en-US',
             defaultLanguage: 'defaultLanguage'
-        }
-    ]
+        },
+        {
+            macros:['fr-FR', 'ja-JP', 'en-US', 'ko-KR', 'de-DE'],
+            userLanguages: ['en', 'zh-CN'],
+            availableLanguages: ['en-US',"zh-CN"],
+            expectedLanguages: 'en-US',
+            defaultLanguage: 'defaultLanguage'
+        },
+    ];
 
 
     testSet.forEach((data,index)=>{
@@ -134,8 +141,10 @@ describe('normal behavior', () => {
             availableLanguages: ['zh-CN'],
             expectedLanguages: 'defaultLanguage',
             defaultLanguage: 'defaultLanguage'
-        },
+        }
     ];
+
+
 
     testSet.forEach((data,index)=>{
         const {userLanguages,availableLanguages,expectedLanguages,defaultLanguage}=data;

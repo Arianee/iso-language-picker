@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/stefdelec/iso-language-picker.svg?branch=master)](https://travis-ci.org/stefdelec/iso-language-picker)
-[![npm version](https://img.shields.io/npm/v/iso-language-picker.svg?style=flat)](https://www.npmjs.com/package/iso-language-picker)
-
+[![Build Status](https://travis-ci.org/Arianee/iso-language-picker.svg?branch=master)](https://travis-ci.org/Arianee/iso-language-picker.svg?branch=master)
+[![npm version](https://img.shields.io/npm/v/@arianee/iso-language-picker.svg?style=flat)](https://www.npmjs.com/package/@arianee/iso-language-picker)
 
 ## purpose
 This library aims to remove headache from developer who tries to know what language he/she should diplay to user.
