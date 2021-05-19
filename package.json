@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "jest",
+    "test:w": "jest --verbose=true --watch",
     "build": "tsc",
     "prepublish": "npm run test && npm run build",
     "postpublish": "npm version minor && git push"

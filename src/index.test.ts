@@ -83,7 +83,43 @@ describe("macro languages",()=>{
 
             expect(result).toBe(expectedLanguages)
         })
-    })
+    });
+
+    describe('case sensitive', () => {
+        const testSet = [
+           {
+                macros:['fr-Fr', 'Ja-JP', 'En-Us', 'kO-KR', 'de-DE'],
+                userLanguages: ['en-UK',"eS"],
+                availableLanguages: ['eN-uS','Ka-BE'],
+                expectedLanguages: 'eN-uS',
+                defaultLanguage: 'defaultLanguage'
+            },
+            {
+                macros:['fr-FR', 'ja-JP', 'eN-US', 'ko-KR', 'de-DE'],
+                userLanguages: ['en-UK',"es"],
+                availableLanguages: ['EN-US','Ka-BE','es'],
+                expectedLanguages: 'EN-US',
+                defaultLanguage: 'defaultLanguage'
+            },
+            {
+                macros:['fR', 'ja-JP', 'ko-KR', 'de-DE'],
+                userLanguages: ['en-UK',"fR"],
+                availableLanguages: ['EN-US','Ka-BE','Fr'],
+                expectedLanguages: 'Fr',
+                defaultLanguage: 'defaultLanguage'
+            }
+        ];
+        testSet.forEach((data,index)=>{
+            const {userLanguages,availableLanguages,expectedLanguages,defaultLanguage,macros}=data;
+
+            test(`${index}/ macros: ${macros}, user languages: ${userLanguages}, availables: ${availableLanguages}, default: ${defaultLanguage}, expected: ${expectedLanguages}`,()=>{
+                const result = pickLanguageAccordingToUserLanguagesWithMacrosFallback(macros, userLanguages, availableLanguages, defaultLanguage);
+
+                expect(result).toBe(expectedLanguages)
+            })
+        });
+
+    });
 })
 
 describe('normal behavior', () => {
@@ -143,9 +179,6 @@ describe('normal behavior', () => {
             defaultLanguage: 'defaultLanguage'
         }
     ];
-
-
-
     testSet.forEach((data,index)=>{
         const {userLanguages,availableLanguages,expectedLanguages,defaultLanguage}=data;
 
@@ -154,5 +187,34 @@ describe('normal behavior', () => {
 
             expect(result).toBe(expectedLanguages)
         })
-    })
+    });
+
+    describe('case sensitive', () => {
+        const testSet = [
+            {
+                userLanguages: ['ZH-cn', 'en-US'],
+                availableLanguages: ['zh-CN','en-US'],
+                expectedLanguages: 'zh-CN',
+                defaultLanguage: 'defaultLanguage'
+            },
+            {
+                userLanguages: ['zh-cn', 'en-US'],
+                availableLanguages: ['zh-CN','en-US'],
+                expectedLanguages: 'zh-CN',
+                defaultLanguage: 'defaultLanguage'
+            }
+        ];
+        testSet.forEach((data,index)=>{
+            const {userLanguages,availableLanguages,expectedLanguages,defaultLanguage}=data;
+
+            test(`${index}/ user languages: ${userLanguages}, availables: ${availableLanguages}, default: ${defaultLanguage}, expected: ${expectedLanguages}`,()=>{
+                const result = pickLanguageAccordingToUserLanguages(userLanguages, availableLanguages, defaultLanguage);
+
+                expect(result).toBe(expectedLanguages)
+            })
+        })
+
+    });
 });
+
+

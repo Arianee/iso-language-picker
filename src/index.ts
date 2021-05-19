@@ -18,12 +18,14 @@ export const pickLanguageAccordingToUserLanguagesWithMacrosFallback=(
         }))
         .filter(d=>!availableLanguages.includes(d.macro))
 
-
     const pickLanguage= pickLanguageAccordingToUserLanguages(userLanguages,[...availableLanguages,...splittedMacro.map(d=>d.macro)],defaultLanguage);
 
-    if(splittedMacro.map(d=>d.macro).includes(pickLanguage)){
-       const macro= splittedMacro?.find(d=>d.macro===pickLanguage);
-       return macro?.from;
+    const isMacro=splittedMacro.map(d => d.macro.toLowerCase()).includes(pickLanguage.toLowerCase());
+
+    if (isMacro) {
+        const correspondingMacro = splittedMacro?.find(d => d.macro === pickLanguage);
+        const correspondingavailableLanguage = availableLanguages.find(d => d.toLowerCase() === correspondingMacro?.from.toLowerCase());
+        return correspondingavailableLanguage || defaultLanguage;
     }else{
         return pickLanguage
     }
@@ -39,21 +41,22 @@ export const pickLanguageAccordingToUserLanguages = (userLanguages: string[],
                                                      availableLanguages: string[],
                                                      defaultLanguage: string
 ): string => {
-    const sorted = availableLanguages.sort().reverse();
+    const originalSorted = [...availableLanguages].sort().reverse();
+    const sortedLowerCase = originalSorted.map(d => d.toLowerCase());
     let choosedLanguage;
     let i=0;
 
     do{
-        const userLanguage=userLanguages[i];
+        const userLanguage = userLanguages[i].toLowerCase();
 
-        const indexPerfectMatching = sorted.indexOf(userLanguage);
-        const indexPartialMatching = sorted
+        const indexPerfectMatching = sortedLowerCase.indexOf(userLanguage);
+        const indexPartialMatching = sortedLowerCase
             .indexOf(userLanguage.split('-')[0]);
 
             if(indexPerfectMatching>-1){
-                choosedLanguage= sorted[indexPerfectMatching];
+                choosedLanguage = originalSorted[indexPerfectMatching];
             } else if(indexPartialMatching>-1){
-                choosedLanguage= sorted[indexPartialMatching];
+                choosedLanguage = originalSorted[indexPartialMatching];
             }
             i++;
     }while(!choosedLanguage && i<userLanguages.length)
