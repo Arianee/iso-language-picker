@@ -215,6 +215,44 @@ describe('normal behavior', () => {
         })
 
     });
+
+    describe('DEV undefined or null languages not treated', () => {
+        const testSet = [
+            {
+                macros:['fr-Fr', 'Ja-JP', 'En-Us', 'kO-KR', 'de-DE'],
+                userLanguages: ['en-UK',"eS"],
+                availableLanguages:( [undefined,'Ka-BE', 'eN-uS'] as any),
+                expectedLanguages: 'eN-uS',
+                defaultLanguage:(undefined as any)
+            },
+           {
+                macros:['fr-FR', 'ja-JP', 'eN-US', 'ko-KR', 'de-DE'],
+                userLanguages: (['en-UK',undefined] as any),
+                availableLanguages: ['EN-US','Ka-BE','es'],
+                expectedLanguages: 'EN-US',
+                defaultLanguage: 'defaultLanguage'
+
+            },
+            {
+                macros:(['fR', 'ja-JP', null, 'de-DE'] as any),
+                userLanguages: ['en-UK',"fR"],
+                availableLanguages: ['EN-US','Ka-BE','Fr'],
+                expectedLanguages: 'Fr',
+                defaultLanguage: 'defaultLanguage'
+            }
+        ];
+        testSet.forEach((data,index)=>{
+            const {userLanguages,availableLanguages,expectedLanguages,defaultLanguage,macros}=data;
+
+            test(`${index}/ macros: ${macros}, user languages: ${userLanguages}, availables: ${availableLanguages}, default: ${defaultLanguage}, expected: ${expectedLanguages}`,()=>{
+                const result = pickLanguageAccordingToUserLanguagesWithMacrosFallback(macros, userLanguages, availableLanguages, defaultLanguage);
+
+                expect(result).toBe(expectedLanguages)
+            })
+        });
+
+    });
+
 });
 
 
