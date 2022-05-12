@@ -14,9 +14,6 @@
     "prepublish": "npm run test && npm run build",
     "postpublish": "npm version minor && git push"
   },
-  "engines": {
-    "node": "10"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
