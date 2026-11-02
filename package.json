@@ -1,11 +1,11 @@
 {
   "name": "@arianee/iso-language-picker",
   "version": "0.5.0",
-  "description": "This library aims to helps developer trying to understand what language should be displayed to user",
+  "description": "Pick the best language to display to a user from their preferred languages and the available ones (BCP 47)",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Arianee/iso-language-picker"
+    "url": "git+https://github.com/Arianee/iso-language-picker.git"
   },
   "scripts": {
     "test": "vitest run",
@@ -14,12 +14,19 @@
     "prepublishOnly": "npm run test && npm run build",
     "postpublish": "npm version minor && git push"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "i18n",
+    "language",
+    "locale",
+    "bcp47",
+    "accept-language",
+    "negotiation"
+  ],
+  "author": "Arianee",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.12"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
   },
   "private": false,
   "types": "lib/index.d.ts",
@@ -27,6 +34,10 @@
     "lib"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
+  },
+  "homepage": "https://github.com/Arianee/iso-language-picker#readme",
+  "bugs": {
+    "url": "https://github.com/Arianee/iso-language-picker/issues"
   }
 }
