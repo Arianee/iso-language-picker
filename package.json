@@ -1,47 +1,43 @@
 {
   "name": "@arianee/iso-language-picker",
   "version": "0.5.0",
-  "description": "This library aims to helps developer trying to understand what language should be displayed to user",
+  "description": "Pick the best language to display to a user from their preferred languages and the available ones (BCP 47)",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Arianee/iso-language-picker"
+    "url": "git+https://github.com/Arianee/iso-language-picker.git"
   },
   "scripts": {
-    "test": "jest",
-    "test:w": "jest --verbose=true --watch",
+    "test": "vitest run",
+    "test:w": "vitest",
     "build": "tsc",
-    "prepublish": "npm run test && npm run build",
+    "prepublishOnly": "npm run test && npm run build",
     "postpublish": "npm version minor && git push"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "i18n",
+    "language",
+    "locale",
+    "bcp47",
+    "accept-language",
+    "negotiation"
+  ],
+  "author": "Arianee",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^30.2.0",
-    "ts-jest": "^27.0.5",
-    "typescript": "^3.8.3"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
   },
   "private": false,
-  "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "testEnvironment": "jest-environment-node",
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=22"
   },
-  "dependencies": {
-    "@types/jest": "^25.2.1",
-    "lodash": "^4.17.15"
+  "homepage": "https://github.com/Arianee/iso-language-picker#readme",
+  "bugs": {
+    "url": "https://github.com/Arianee/iso-language-picker/issues"
   }
 }
