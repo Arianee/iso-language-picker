@@ -8,40 +8,25 @@
     "url": "https://github.com/Arianee/iso-language-picker"
   },
   "scripts": {
-    "test": "jest",
-    "test:w": "jest --verbose=true --watch",
+    "test": "vitest run",
+    "test:w": "vitest",
     "build": "tsc",
-    "prepublish": "npm run test && npm run build",
+    "prepublishOnly": "npm run test && npm run build",
     "postpublish": "npm version minor && git push"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^30.2.0",
-    "ts-jest": "^27.0.5",
-    "typescript": "^3.8.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.12"
   },
   "private": false,
-  "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "testEnvironment": "jest-environment-node",
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
-  "dependencies": {
-    "@types/jest": "^25.2.1",
-    "lodash": "^4.17.15"
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=20"
   }
 }

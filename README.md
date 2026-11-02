@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/Arianee/iso-language-picker.svg?branch=master)](https://travis-ci.org/Arianee/iso-language-picker.svg?branch=master)
 [![npm version](https://img.shields.io/npm/v/@arianee/iso-language-picker.svg?style=flat)](https://www.npmjs.com/package/@arianee/iso-language-picker)
 
 ## purpose
